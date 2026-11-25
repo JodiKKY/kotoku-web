@@ -5,6 +5,7 @@ import {
   AnimatePresence,
   MotionConfig,
   motion,
+  useInView,
   useMotionValueEvent,
   useScroll,
   useSpring,
@@ -34,6 +35,8 @@ const steps = [
   },
 ];
 
+/* How long each step shows on mobile before moving to the next one */
+const AUTOPLAY_MS = 5000;
 
 function Screen({ children }: { children: ReactNode }) {
   return (
@@ -171,6 +174,8 @@ export function HowItWorks() {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const [desktop, setDesktop] = useState(false);
+  const [autoplay, setAutoplay] = useState(true);
+  const inView = useInView(sectionRef, { amount: 0.4 });
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -179,6 +184,15 @@ export function HowItWorks() {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  // Mobile: step through the screens on a timer while the section is on screen.
+  // Stops for good once the person taps a step, and never runs with reduced motion.
+  useEffect(() => {
+    if (desktop || !autoplay || !inView) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setActive((current) => (current + 1) % steps.length), AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [desktop, autoplay, inView]);
 
   // On desktop the section is tall and the phone stays pinned: scrolling moves through the steps
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
@@ -193,6 +207,7 @@ export function HowItWorks() {
   function goTo(index: number) {
     const section = sectionRef.current;
     if (!desktop || !section) {
+      setAutoplay(false);
       setActive(index);
       return;
     }
@@ -205,67 +220,16 @@ export function HowItWorks() {
     <MotionConfig reducedMotion="user">
       <section id="how-it-works" ref={sectionRef} className="relative bg-[#F4F1E7] md:h-[320vh]">
         <div className="md:sticky md:top-0 md:flex md:h-screen md:items-center md:overflow-hidden">
-          <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-5 py-20 sm:px-8 md:grid-cols-[1.05fr_0.95fr] md:gap-16 md:py-0 lg:px-12">
-            <div>
-              <h2 className="font-display max-w-xl text-4xl font-medium leading-[1.05] tracking-[-0.035em] text-forest sm:text-5xl">
-                <MaskLines lines={["Stop digging through your bag.", "Open Kotoku instead."]} />
-              </h2>
+          {/*
+            Mobile order: heading, phone, steps (so the phone is visible while you tap a step).
+            Desktop: heading and steps in the left column, phone on the right.
+          */}
+          <div className="mx-auto grid w-full max-w-7xl items-center gap-y-8 px-5 py-16 sm:px-8 md:grid-cols-[1.05fr_0.95fr] md:gap-x-16 md:gap-y-0 md:py-0 lg:px-12">
+            <h2 className="font-display max-w-xl text-4xl font-medium leading-[1.05] tracking-[-0.035em] text-forest sm:text-5xl md:col-start-1 md:row-start-1 md:self-end">
+              <MaskLines lines={["Stop digging through your bag.", "Open Kotoku instead."]} />
+            </h2>
 
-              <div className="relative mt-12 md:mt-14">
-                {/* The line beside the steps fills as you scroll */}
-                <div
-                  className="absolute bottom-2 left-0 top-2 hidden w-px bg-forest/15 md:block"
-                  aria-hidden="true"
-                >
-                  <motion.span
-                    style={{ scaleY: fill }}
-                    className="block h-full w-px origin-top bg-forest"
-                  />
-                </div>
-
-                <ol className="space-y-8 md:space-y-10 md:pl-8">
-                  {steps.map((step, index) => {
-                    const on = index === active;
-                    return (
-                      <li key={step.number}>
-                        <button
-                          type="button"
-                          onClick={() => goTo(index)}
-                          aria-current={on ? "step" : undefined}
-                          className={cn(
-                            "block w-full text-left transition-opacity duration-500",
-                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-4",
-                            on ? "opacity-100" : "opacity-60 md:opacity-35 md:hover:opacity-60"
-                          )}
-                        >
-                          <span className="font-display text-sm font-semibold tabular-nums text-forest/50">
-                            {step.number}
-                          </span>
-                          <span className="font-display mt-1 block text-2xl font-semibold tracking-[-0.01em] text-forest md:text-3xl">
-                            {step.title}
-                          </span>
-                          {/* On desktop only the current step is open */}
-                          <span
-                            className={cn(
-                              "grid transition-[grid-template-rows] duration-500",
-                              on ? "grid-rows-[1fr]" : "grid-rows-[1fr] md:grid-rows-[0fr]"
-                            )}
-                          >
-                            <span className="overflow-hidden">
-                              <span className="mt-3 block max-w-sm text-sm leading-6 text-ink/65">
-                                {step.description}
-                              </span>
-                            </span>
-                          </span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ol>
-              </div>
-            </div>
-
-            <div className="mx-auto w-full max-w-85 justify-self-center">
+            <div className="mx-auto w-full min-w-0 max-w-85 justify-self-center md:col-start-2 md:row-span-2 md:row-start-1 [&>*]:mx-auto">
               <IPhoneFrame label={`Kotoku app, step ${active + 1}: ${steps[active].title}`}>
                 <div className="relative h-93 overflow-hidden">
                   <AnimatePresence initial={false}>
@@ -288,6 +252,74 @@ export function HowItWorks() {
                 </div>
                 <TabBar />
               </IPhoneFrame>
+            </div>
+
+            <div className="relative md:col-start-1 md:row-start-2 md:mt-14 md:self-start">
+              {/* The line beside the steps fills as you scroll (desktop only) */}
+              <div
+                className="absolute bottom-2 left-0 top-2 hidden w-px bg-forest/15 md:block"
+                aria-hidden="true"
+              >
+                <motion.span style={{ scaleY: fill }} className="block h-full w-px origin-top bg-forest" />
+              </div>
+
+              <ol className="space-y-2 md:space-y-10 md:pl-8">
+                {steps.map((step, index) => {
+                  const on = index === active;
+                  return (
+                    <li key={step.number}>
+                      <button
+                        type="button"
+                        onClick={() => goTo(index)}
+                        aria-current={on ? "step" : undefined}
+                        className={cn(
+                          "block min-h-12 w-full rounded-2xl border px-4 py-3 text-left transition-all duration-500",
+                          "md:min-h-0 md:rounded-none md:border-0 md:bg-transparent md:p-0",
+                          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-4",
+                          on
+                            ? "border-forest/25 bg-white opacity-100 shadow-sm md:shadow-none"
+                            : "border-transparent opacity-70 md:opacity-35 md:hover:opacity-60"
+                        )}
+                      >
+                        <span className="flex items-baseline gap-3 md:block">
+                          <span className="font-display text-sm font-semibold tabular-nums text-forest/50">
+                            {step.number}
+                          </span>
+                          <span className="font-display block text-xl font-semibold tracking-[-0.01em] text-forest md:mt-1 md:text-3xl">
+                            {step.title}
+                          </span>
+                        </span>
+                        {/* Only the current step is open, on every screen size */}
+                        <span
+                          className={cn(
+                            "grid transition-[grid-template-rows] duration-500",
+                            on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                          )}
+                        >
+                          <span className="overflow-hidden">
+                            <span className="mt-2 block max-w-sm text-sm leading-6 text-ink/65 md:mt-3">
+                              {step.description}
+                            </span>
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+
+              {/* Progress dots, mobile only */}
+              <div className="mt-5 flex justify-center gap-2 md:hidden" aria-hidden="true">
+                {steps.map((step, index) => (
+                  <span
+                    key={step.number}
+                    className={cn(
+                      "h-1.5 rounded-full bg-forest transition-all duration-500",
+                      index === active ? "w-6 opacity-100" : "w-1.5 opacity-25"
+                    )}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
