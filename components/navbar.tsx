@@ -173,27 +173,29 @@ export default function Navbar() {
             <div className="flex items-center justify-end gap-2">
               {/* Desktop only: on mobile the button lives inside the hamburger menu.
                   The label rolls up and is replaced by a copy on hover */}
-              <a
-                href="#get-started"
-                className="button button-gold group hidden items-center gap-2 md:inline-flex"
-              >
-                <span className="relative block overflow-hidden leading-tight">
-                  <span className="block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
-                    Get early access
+              <div className="hidden md:block">
+                <a
+                  href="#get-started"
+                  className="button button-gold group inline-flex items-center gap-2"
+                >
+                  <span className="relative block overflow-hidden leading-tight">
+                    <span className="block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
+                      Get early access
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
+                    >
+                      Get early access
+                    </span>
                   </span>
-                  <span
+                  <ArrowUpRight
+                    size={16}
                     aria-hidden="true"
-                    className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
-                  >
-                    Get early access
-                  </span>
-                </span>
-                <ArrowUpRight
-                  size={16}
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                />
-              </a>
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </a>
+              </div>
 
               {/* Two lines that turn into a cross */}
               <button
