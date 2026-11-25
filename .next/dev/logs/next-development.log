@@ -1,0 +1,12 @@
+{"timestamp":"00:00:00.850","source":"Server","level":"LOG","message":"- Cache Components enabled"}
+{"timestamp":"00:00:00.850","source":"Server","level":"LOG","message":"- Partial Prefetching enabled"}
+{"timestamp":"00:00:00.850","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
+{"timestamp":"00:00:00.850","source":"Server","level":"LOG","message":"  ✓ agentFeedback"}
+{"timestamp":"00:00:00.850","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:08.494","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:11.013","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:11.094","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:02:28.064","source":"Server","level":"LOG","message":"✓ Compiled in 685ms"}
+{"timestamp":"00:02:29.817","source":"Server","level":"LOG","message":"✓ Compiled in 89ms"}
+{"timestamp":"00:02:31.393","source":"Server","level":"LOG","message":"✓ Compiled in 147ms"}
+{"timestamp":"00:03:52.675","source":"Server","level":"LOG","message":"✓ Compiled in 318ms"}
