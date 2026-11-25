@@ -1,0 +1,406 @@
+@import "tailwindcss";
+
+:root {
+  --forest: #105c43;
+  --cream: #faf5e9;
+  --gold: #f6b93b;
+  --sage: #8fc4aa;
+  --ink: #202720;
+  --background: var(--cream);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-forest: var(--forest);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-sage: var(--sage);
+  --color-ink: var(--ink);
+  --font-sans: var(--font-manrope);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #d9e7d7;
+  color: var(--forest);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 180ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--forest);
+}
+
+.nav-link.active::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.7rem;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--forest);
+  content: "";
+}
+
+.button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.8rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.button-green {
+  background: var(--forest);
+  color: #fffdf5;
+  box-shadow: 0 7px 18px rgb(16 92 67 / 12%);
+}
+
+.button-green:hover {
+  background: #0b4e38;
+  box-shadow: 0 10px 24px rgb(16 92 67 / 20%);
+}
+
+.button-gold {
+  background: var(--gold);
+  color: #26382d;
+}
+
+.button-gold:hover {
+  background: #f9c957;
+  box-shadow: 0 8px 20px rgb(154 109 9 / 12%);
+}
+
+.button-outline {
+  border-color: rgb(16 92 67 / 35%);
+  color: var(--forest);
+}
+
+.button-outline:hover {
+  background: #fffdf5;
+  border-color: var(--forest);
+}
+
+.hero-underline {
+  position: absolute;
+  right: 0;
+  bottom: -0.05em;
+  left: 0.05em;
+  height: 0.1em;
+  border-radius: 999px;
+  background: var(--gold);
+  transform: rotate(-2deg);
+}
+
+.hero-art {
+  isolation: isolate;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(0.2px);
+  pointer-events: none;
+}
+
+.hero-orb-one {
+  top: 12%;
+  left: 15%;
+  width: 66%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 45% 45%, #dce9d6 0, #dce9d6 35%, rgb(220 233 214 / 0) 70%);
+  opacity: 0.9;
+}
+
+.hero-orb-two {
+  right: 9%;
+  bottom: 8%;
+  width: 56%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgb(246 185 59 / 18%) 0, rgb(246 185 59 / 8%) 45%, transparent 70%);
+}
+
+.wallet-card {
+  min-height: 155px;
+  border-radius: 1.35rem;
+  padding: 1.1rem;
+  box-shadow: 0 18px 36px rgb(32 39 32 / 12%);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.wallet-card:hover {
+  transform: translateY(-5px) rotate(0deg);
+  box-shadow: 0 22px 42px rgb(32 39 32 / 17%);
+}
+
+.decor-spark {
+  z-index: 1;
+  font-size: 2.4rem;
+  line-height: 1;
+  animation: spark-drift 5s ease-in-out infinite;
+}
+
+.decor-spark:nth-of-type(2) {
+  animation-delay: -2.5s;
+}
+
+.feature-item {
+  transition: transform 200ms ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px);
+}
+
+.showcase-art {
+  isolation: isolate;
+}
+
+.showcase-blob {
+  position: absolute;
+  inset: 8% 8% 8% 10%;
+  z-index: -1;
+  border-radius: 44% 56% 52% 48% / 47% 43% 57% 53%;
+  background: #dcebd7;
+  transform: rotate(-10deg);
+}
+
+.step-card {
+  border-top: 1px solid rgb(16 92 67 / 15%);
+  padding-top: 1.25rem;
+}
+
+.cta-panel {
+  isolation: isolate;
+}
+
+.cta-decoration {
+  position: absolute;
+  right: 4%;
+  bottom: -38%;
+  z-index: 0;
+  color: rgb(143 196 170 / 42%);
+  font-size: clamp(16rem, 30vw, 26rem);
+  font-weight: 800;
+  letter-spacing: -0.12em;
+  line-height: 1;
+  pointer-events: none;
+  transform: rotate(-13deg);
+}
+
+@keyframes spark-drift {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-8px) rotate(10deg); }
+}
+
+@media (max-width: 639px) {
+  .wallet-card {
+    min-height: 140px;
+  }
+
+  .hero-art {
+    min-height: 490px;
+  }
+
+  .cta-decoration {
+    right: -5%;
+    bottom: -14%;
+    font-size: 15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/*
+  Kotoku motion. Paste this at the bottom of app/globals.css.
+
+  Everything is wrapped in prefers-reduced-motion: no-preference, so people who
+  ask for less motion get the finished page with nothing moving.
+*/
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ---- Page-load sequence (hero only) ---- */
+
+  /* Headline, copy, buttons and phone rise in, staggered by --d */
+  .rise {
+    animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Floating cards fly in from the sides and settle (--fx is the start offset) */
+  .pop-in {
+    animation: pop-in 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translate(var(--fx, 0px), 40px) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Cards in the phone drop into the stack one after another */
+  .card-drop {
+    animation: card-drop 0.7s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes card-drop {
+    from {
+      opacity: 0;
+      transform: translateY(-80px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---- Idle motion ---- */
+
+  /* Slow bob. --bob = duration, --bd = delay, --amp = distance */
+  .bob {
+    animation: bob var(--bob, 6s) ease-in-out var(--bd, 0s) infinite;
+  }
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(calc(var(--amp, 10px) * -1));
+    }
+  }
+
+  /* Tilted cards straighten up when you hover them */
+  .float-card {
+    transition: rotate 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .float-card:hover {
+    rotate: 0deg;
+  }
+}
+
+/*
+  ---- Scroll-driven reveals (no JavaScript) ----
+
+  Uses CSS scroll-driven animations. Browsers without support skip this block
+  and simply show the content, so nothing is ever hidden.
+*/
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* --i staggers items that sit in the same row */
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--i, 0) * 6%) entry calc(45% + var(--i, 0) * 6%);
+    }
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* The line between steps draws left to right */
+    .draw-line {
+      animation: draw-x linear both;
+      animation-timeline: view();
+      animation-range: entry 20% entry 90%;
+    }
+    @keyframes draw-x {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    /* The K in the CTA panel draws itself, one stroke at a time */
+    .k-draw line {
+      stroke-dasharray: 1;
+      animation: k-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    .k-draw line:nth-child(2) {
+      animation-range: entry 20% entry 80%;
+    }
+    .k-draw line:nth-child(3) {
+      animation-range: entry 40% entry 100%;
+    }
+    @keyframes k-draw {
+      from {
+        stroke-dashoffset: 1;
+        opacity: 0;
+      }
+      1% {
+        opacity: 1;
+      }
+      to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+  }
+}
