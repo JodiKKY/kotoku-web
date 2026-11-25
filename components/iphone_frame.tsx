@@ -13,10 +13,10 @@ export function IPhoneFrame({ children, label, className = "" }: IPhoneFrameProp
   return (
     <div role="img" aria-label={label} className={`relative w-[300px] ${className}`}>
       {/* Side buttons: action, volume up, volume down, power */}
-      <span aria-hidden="true" className="absolute -left-[3px] top-[96px] h-[26px] w-[3px] rounded-l-sm bg-[#2A352F]" />
-      <span aria-hidden="true" className="absolute -left-[3px] top-[140px] h-[48px] w-[3px] rounded-l-sm bg-[#2A352F]" />
-      <span aria-hidden="true" className="absolute -left-[3px] top-[200px] h-[48px] w-[3px] rounded-l-sm bg-[#2A352F]" />
-      <span aria-hidden="true" className="absolute -right-[3px] top-[160px] h-[76px] w-[3px] rounded-r-sm bg-[#2A352F]" />
+      <span aria-hidden="true" className="absolute -left-[3px] top-[96px] h-[26px] w-0.75 rounded-l-sm bg-[#2A352F]" />
+      <span aria-hidden="true" className="absolute -left-[3px] top-35 h-[48px] w-0.75 rounded-l-sm bg-[#2A352F]" />
+      <span aria-hidden="true" className="absolute -left-[3px] top-[200px] h-12 w-0.75 rounded-l-sm bg-[#2A352F]" />
+      <span aria-hidden="true" className="absolute -right-[3px] top-[160px] h-[76px] w-0.75 rounded-r-sm bg-[#2A352F]" />
 
       {/* Metal edge */}
       <div className="rounded-[49px] bg-[linear-gradient(145deg,#56635B,#1A221E_40%,#2E3A33)] p-[2px] shadow-[0_40px_70px_-28px_rgba(23,58,43,0.55)]">

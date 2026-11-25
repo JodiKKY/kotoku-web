@@ -99,7 +99,7 @@ export function HeroPhone() {
         className="phone-shell"
         label="Kotoku app showing a stack of cards: a debit card, a loyalty card and a Ghana Card"
       >
-        <div className="px-[14px]">
+        <div className="px-3.5">
           <div className="flex items-center justify-between">
             <h3 className="text-[28px] font-bold tracking-tight text-forest">Wallet</h3>
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-sage text-forest">
@@ -108,7 +108,7 @@ export function HeroPhone() {
           </div>
 
           {/* Stacked cards, like the iOS Wallet */}
-          <div className="relative mt-4 h-[272px]">
+          <div className="relative mt-4 h-68">
             {order.map((id, depth) => {
               const card = CARDS[id];
               const isFront = id === front;

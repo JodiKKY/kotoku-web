@@ -89,10 +89,10 @@ export default function HomePage() {
       {/* Hero: one sequence on load. Headline lines rise, the copy follows, the cards fan out from behind the phone. */}
       <section
         id="home"
-        className="relative mx-auto grid min-h-[680px] w-full max-w-7xl items-center gap-12 px-5 pb-20 pt-10 sm:px-8 md:grid-cols-[0.92fr_1.08fr] md:gap-4 md:px-12 md:pb-28 md:pt-8"
+        className="relative mx-auto grid min-h-170 w-full max-w-7xl items-center gap-12 px-5 pb-20 pt-10 sm:px-8 md:grid-cols-[0.92fr_1.08fr] md:gap-4 md:px-12 md:pb-28 md:pt-8"
       >
         <div className="relative z-10 max-w-xl">
-          <h1 className="font-display max-w-[650px] text-[clamp(3.3rem,7vw,6.3rem)] font-medium leading-[0.98] tracking-[-0.04em] text-forest">
+          <h1 className="font-display max-w-162.5 text-[clamp(3.3rem,7vw,6.3rem)] font-medium leading-[0.98] tracking-[-0.04em] text-forest">
             <MaskLines onLoad delay={0.1} stagger={0.14} lines={["Your pocket,", "minus the clutter."]} />
           </h1>
 

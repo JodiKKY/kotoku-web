@@ -171,18 +171,19 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center justify-end gap-2">
-              {/* The label rolls up and is replaced by a copy on hover */}
+              {/* Desktop only: on mobile the button lives inside the hamburger menu.
+                  The label rolls up and is replaced by a copy on hover */}
               <a
                 href="#get-started"
-                className="button button-gold group hidden items-center gap-2 sm:inline-flex"
+                className="button button-gold group hidden items-center gap-2 md:inline-flex"
               >
                 <span className="relative block overflow-hidden leading-tight">
-                  <span className="block transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
+                  <span className="block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
                     Get early access
                   </span>
                   <span
                     aria-hidden="true"
-                    className="absolute inset-0 block translate-y-full transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
+                    className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
                   >
                     Get early access
                   </span>
@@ -209,7 +210,7 @@ export default function Navbar() {
                   "focus-visible:ring-forest focus-visible:ring-offset-2"
                 )}
               >
-                <span aria-hidden="true" className="relative block h-[14px] w-5">
+                <span aria-hidden="true" className="relative block h-3.5 w-5">
                   <motion.span
                     className="absolute left-0 top-0 block h-[1.5px] w-full rounded-full bg-current"
                     animate={open ? { y: 6, rotate: 45 } : { y: 0, rotate: 0 }}
@@ -264,7 +265,7 @@ export default function Navbar() {
                         className={cn(
                           "flex items-center justify-between rounded-2xl px-4 py-3.5",
                           "text-lg font-semibold tracking-tight transition-colors",
-                          isActive ? "bg-forest/[0.08] text-forest" : "text-ink/70 hover:bg-forest/5"
+                          isActive ? "bg-forest/8 text-forest" : "text-ink/70 hover:bg-forest/5"
                         )}
                       >
                         {link.label}

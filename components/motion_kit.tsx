@@ -34,7 +34,7 @@ export function MaskLines({
     <>
       {lines.map((line, i) => (
         // Extra bottom/right room so descenders and italics aren't clipped by the strip
-        <span key={i} className="-mb-[0.14em] block overflow-hidden pb-[0.14em] pr-[0.1em]">
+        <span key={i} className="mb-[-0.14em] block overflow-hidden pb-[0.14em] pr-[0.1em]">
           <motion.span
             className="block"
             initial={reduce ? false : { y: "108%" }}

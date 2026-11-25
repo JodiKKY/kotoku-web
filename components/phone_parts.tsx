@@ -18,7 +18,7 @@ export function ListRow({
   tint: string;
 }) {
   return (
-    <li className="flex items-center gap-3 border-b border-ink/5 px-3 py-[10px] last:border-0">
+    <li className="flex items-center gap-3 border-b border-ink/5 px-3 py-2.5 last:border-0">
       <span className={`flex h-9 w-9 items-center justify-center rounded-[10px] text-forest ${tint}`}>
         <Icon size={17} />
       </span>
@@ -39,11 +39,11 @@ export function TabBar() {
   ];
 
   return (
-    <div className="absolute inset-x-0 bottom-0 z-20 flex justify-around border-t border-ink/10 bg-[#FFFCF4]/85 px-4 pb-[22px] pt-[10px] backdrop-blur-xl">
+    <div className="absolute inset-x-0 bottom-0 z-20 flex justify-around border-t border-ink/10 bg-[#FFFCF4]/85 px-4 pb-5.5 pt-2.5 backdrop-blur-xl">
       {tabs.map(({ icon: Icon, label, active }) => (
         <div
           key={label}
-          className={`flex w-16 flex-col items-center gap-[3px] ${active ? "text-forest" : "text-ink/45"}`}
+          className={`flex w-16 flex-col items-center gap-0.75 ${active ? "text-forest" : "text-ink/45"}`}
         >
           <Icon size={22} strokeWidth={active ? 2.2 : 1.8} />
           <span className="text-[10px] font-medium">{label}</span>
