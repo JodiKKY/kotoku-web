@@ -34,13 +34,11 @@ const steps = [
   },
 ];
 
-/* ---------- The three phone screens ---------- */
 
-/* Wrapper that fades each screen in after the previous one has left */
 function Screen({ children }: { children: ReactNode }) {
   return (
     <motion.div
-      className="absolute inset-0 px-[14px]"
+      className="absolute inset-0 px-3.5"
       initial={{ opacity: 0, y: 18, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, delay: 0.18, ease: EASE } }}
       exit={{ opacity: 0, y: -12, transition: { duration: 0.25 } }}
@@ -106,7 +104,7 @@ function StackScreen() {
   return (
     <>
       <h3 className="font-display text-[28px] font-semibold tracking-tight text-forest">Your cards</h3>
-      <div className="relative mt-5 h-[240px]">
+      <div className="relative mt-5 h-60">
         {cards.map((card) => (
           <motion.div
             key={card.id}
@@ -267,9 +265,9 @@ export function HowItWorks() {
               </div>
             </div>
 
-            <div className="mx-auto w-full max-w-[340px] justify-self-center">
+            <div className="mx-auto w-full max-w-85 justify-self-center">
               <IPhoneFrame label={`Kotoku app, step ${active + 1}: ${steps[active].title}`}>
-                <div className="relative h-[372px] overflow-hidden">
+                <div className="relative h-93 overflow-hidden">
                   <AnimatePresence initial={false}>
                     {active === 0 && (
                       <Screen key="add">
