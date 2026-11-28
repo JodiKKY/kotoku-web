@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { HeroStage } from "@/components/hero_stage";
 import { HowItWorks } from "@/components/how_it_works";
-import { LineDraw, Magnetic, MaskLines, Reveal, ScrollScale } from "@/components/motion_kit";
+import { LineDraw, MaskLines, Reveal, ScrollScale } from "@/components/motion_kit";
 
 const essentials = [
   {
@@ -104,16 +104,12 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal onLoad delay={0.7} className="mt-9 flex flex-wrap items-center gap-3">
-            <Magnetic>
-              <a href="#get-started" className="button button-green active:scale-[0.97]">
-                Get early access
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a href="#features" className="button button-outline active:scale-[0.97]">
-                See what it holds
-              </a>
-            </Magnetic>
+            <a href="#get-started" className="button button-green">
+              Get early access
+            </a>
+            <a href="#features" className="button button-outline">
+              See what it holds
+            </a>
           </Reveal>
 
           <Reveal onLoad delay={0.85}>
@@ -203,14 +199,12 @@ export default function HomePage() {
             </p>
           </div>
           <div className="relative z-10">
-            <Magnetic>
-              <a
-                href="mailto:hello@kotoku.app?subject=Early%20access%20to%20Kotoku"
-                className="button button-green active:scale-[0.97]"
-              >
-                Ask for early access
-              </a>
-            </Magnetic>
+            <a
+              href="mailto:hello@kotoku.app?subject=Early%20access%20to%20Kotoku"
+              className="button button-green"
+            >
+              Ask for early access
+            </a>
             <p className="mt-3 text-xs text-ink/60">hello@kotoku.app</p>
           </div>
 
