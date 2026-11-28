@@ -229,7 +229,7 @@ export function HowItWorks() {
               <MaskLines lines={["Stop digging through your bag.", "Open Kotoku instead."]} />
             </h2>
 
-            <div className="mx-auto w-full min-w-0 max-w-85 justify-self-center md:col-start-2 md:row-span-2 md:row-start-1 [&>*]:mx-auto">
+            <div className="mx-auto w-full min-w-0 max-w-85 justify-self-center md:col-start-2 md:row-span-2 md:row-start-1 *:mx-auto">
               <IPhoneFrame label={`Kotoku app, step ${active + 1}: ${steps[active].title}`}>
                 <div className="relative h-93 overflow-hidden">
                   <AnimatePresence initial={false}>
